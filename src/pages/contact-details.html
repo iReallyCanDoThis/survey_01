@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактна інформація</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Контактні дані</h1>
+      </header>
+      <main>
+        <form id="contactForm" name="contactForm" method="POST" data-netlify="true" action="thank-you.html">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <input type="hidden" id="demographicsData" name="demographics">
+          <input type="hidden" id="category1SelectionData" name="category1">
+          <input type="hidden" id="category1-n-SelectionData" name="category1n">
+          <input type="hidden" id="category2SelectionData" name="category2">
+          <input type="hidden" id="category2-n-SelectionData" name="category2n">
+          <input type="hidden" id="category3SelectionData" name="category3">
+          <input type="hidden" id="category3-n-SelectionData" name="category3n">
+          <button type="submit" class="btn submit-btn">Відправити</button>
+        </form>
+      </main>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('demographicsData').value = localStorage.getItem('demographics');
+        document.getElementById('category1SelectionData').value = localStorage.getItem('category1Selection');
+        document.getElementById('category1-n-SelectionData').value = localStorage.getItem('category1-n-Selection');
+        document.getElementById('category2SelectionData').value = localStorage.getItem('category2Selection');
+        document.getElementById('category2-n-SelectionData').value = localStorage.getItem('category2-n-Selection');
+        document.getElementById('category3SelectionData').value = localStorage.getItem('category3Selection');
+        document.getElementById('category3-n-SelectionData').value = localStorage.getItem('category3-n-Selection');
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function() {
+          localStorage.clear();
+        });
+      });
+    </script>
+  </body>
+</html>

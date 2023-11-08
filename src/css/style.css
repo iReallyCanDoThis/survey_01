@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+main {
+  margin-bottom: 30px;
+}
+
+main p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.back-btn {
+  width: 375px;
+  margin-right: 5px;
+  background-color: #fff;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.submit-btn {
+  width: 375px;
+}
+
+#demographicsForm .submit-btn {
+  width: 100%;
+}
+
+#contactForm .submit-btn {
+  width: 100%;
+}
+
+.image-selection-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.image-selection-form label {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.image-selection-form label img {
+  max-width: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .image-selection-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltip:focus .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вітання та демографія</title>
+    <link rel="stylesheet" href="src/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Ласкаво просимо до нашого опитування!</h1>
+      </header>
+      <main>
+        <form id="demographicsForm" netlify>
+          <div class="form-group">
+            <label for="name">Ім'я:</label>
+            <input type="text" id="name" name="name" placeholder="Введіть ваше ім'я" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Стать:</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Оберіть стать</option>
+              <option value="male">Чоловіча</option>
+              <option value="female">Жіноча</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ageGroup">Вікова група:</label>
+            <select id="ageGroup" name="ageGroup" required>
+              <option value="" disabled selected>Оберіть вікову групу</option>
+              <option value="under18">Менше 18</option>
+              <option value="18-24">18-24</option>
+              <option value="25-34">25-34</option>
+              <option value="35-44">35-44</option>
+              <option value="45-54">45-54</option>
+              <option value="55-64">55-64</option>
+              <option value="65plus">65 і старші</option>
+            </select>
+          </div>
+          <button type="button" class="btn submit-btn" onclick="saveAndContinue()" disabled> Почати опитування <span class="tooltip">
+              <span class="tooltiptext">Будь ласка, заповніть усі поля</span>
+            </span>
+          </button>
+        </form>
+      </main>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('demographicsForm');
+        const submitButton = document.querySelector('.submit-btn');
+        const inputs = form.querySelectorAll('input, select');
+        // Функція для оновлення статусу кнопки в залежності від валідності полів
+        function updateButtonStatus() {
+          const isValid = Array.from(inputs).every(input => {
+            return input.value.trim() !== '';
+          });
+          submitButton.disabled = !isValid;
+        }
+        inputs.forEach(input => input.addEventListener('change', updateButtonStatus));
+        window.saveAndContinue = function() {
+          const name = document.getElementById('name').value.trim();
+          const gender = document.getElementById('gender').value;
+          const ageGroup = document.getElementById('ageGroup').value;
+          if (!name || !gender || !ageGroup) {
+            alert('Будь ласка, заповніть усі поля.');
+            return;
+          }
+          const demographics = {
+            name,
+            gender,
+            ageGroup
+          };
+          localStorage.setItem('demographics', JSON.stringify(demographics));
+          window.location.href = 'src/pages/category1.html';
+        };
+        updateButtonStatus();
+      });
+    </script>
+  </body>
+</html>
