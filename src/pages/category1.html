@@ -12,7 +12,7 @@
         <h1>Категорія 1: Найбільш типові</h1>
       </header>
       <main>
-        <p>Будь ласка, оберіть <strong>5 найбільш типових</strong> упаковок з нижченаведеного списку.</p>
+        <p>Будь ласка, оберіть <strong>5 найбільш типових</strong> упаковок з нижченаведеного списку. </p>
         <form id="category1Form" class="image-selection-form" netlify>
           <label for="img-1-1">
             <input type="checkbox" id="img-1-1" name="image" value="img-1-1">
@@ -123,26 +123,37 @@
         const submitButton = document.querySelector('.submit-btn');
         const backButton = document.querySelector('.back-btn');
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+        // Відновлення стану чекбоксів з localStorage
+        const savedSelection = JSON.parse(localStorage.getItem('category1Selection')) || [];
         checkboxes.forEach(checkbox => {
-          checkbox.addEventListener('change', updateButtonStatus);
-        });
-
-        function updateButtonStatus() {
-          const checkedCheckboxes = form.querySelectorAll('input[type="checkbox"]:checked');
-          if (checkedCheckboxes.length > 5) {
-            alert('Ви не можете обрати більше 5 зображень.');
-            this.checked = false;
+          if (savedSelection.includes(checkbox.value)) {
+            checkbox.checked = true;
           }
+        });
+        // Оновлення стану кнопки "далі"
+        function updateButtonStatus() {
+          const checkedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
           submitButton.disabled = checkedCheckboxes.length !== 5;
         }
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function() {
+            if (Array.from(checkboxes).filter(cb => cb.checked).length > 5) {
+              alert('Ви не можете обрати більше 5 зображень.');
+              checkbox.checked = false;
+            }
+            updateButtonStatus();
+          });
+        });
         submitButton.addEventListener('click', function() {
-          const selectedImages = Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+          const selectedImages = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
           localStorage.setItem('category1Selection', JSON.stringify(selectedImages));
-          window.location.href = 'category1-n.html';
+          window.location.href = 'category1-n.html'; // Перевірте, що шлях вказано правильно
         });
         backButton.addEventListener('click', function() {
-          window.history.back();
+          window.history.back(); // Перевірте, що ця дія працює як очікувалося
         });
+        // Ініціалізація стану кнопки при завантаженні сторінки
+        updateButtonStatus();
       });
     </script>
   </body>
