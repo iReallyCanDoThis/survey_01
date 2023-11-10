@@ -13,7 +13,6 @@
       </header>
       <main>
         <form id="demographicsForm" netlify>
-          <!-- Поле для імені видалено -->
           <div class="form-group">
             <label for="gender">Стать:</label>
             <select id="gender" name="gender" required>
@@ -45,13 +44,12 @@
         const submitButton = document.querySelector('.submit-btn');
         const genderSelect = document.getElementById('gender');
         const ageGroupSelect = document.getElementById('ageGroup');
-        // Функція для оновлення статусу кнопки в залежності від наявності даних
+
         function updateButtonStatus() {
           const isGenderSelected = genderSelect.value;
           const isAgeGroupSelected = ageGroupSelect.value;
           submitButton.disabled = !(isGenderSelected && isAgeGroupSelected);
         }
-        // Встановлення значень виборів з localStorage, якщо такі є
         const savedDemographics = JSON.parse(localStorage.getItem('demographics'));
         if (savedDemographics) {
           if (savedDemographics.gender) {
@@ -61,12 +59,10 @@
             ageGroupSelect.value = savedDemographics.ageGroup;
           }
         }
-        // Додаємо обробники подій для вибору статі та вікової групи
         [genderSelect, ageGroupSelect].forEach(input => {
           input.addEventListener('change', updateButtonStatus);
           input.addEventListener('input', updateButtonStatus);
         });
-        // Логіка кнопки "Почати опитування"
         window.saveAndContinue = function() {
           const gender = genderSelect.value;
           const ageGroup = ageGroupSelect.value;
@@ -74,7 +70,6 @@
             alert('Будь ласка, заповніть усі поля.');
             return;
           }
-          // Збереження демографічних даних
           const demographics = {
             gender,
             ageGroup
@@ -82,7 +77,6 @@
           localStorage.setItem('demographics', JSON.stringify(demographics));
           window.location.href = 'src/pages/category1.html';
         };
-        // Оновлюємо стан кнопки при завантаженні сторінки
         updateButtonStatus();
       });
     </script>
