@@ -12,7 +12,7 @@
         <h1>Категорія 3: Найбільш нетипові</h1>
       </header>
       <main>
-        <p>Будь ласка, оберіть <strong>5 найбільш нетипових</strong> упаковок з нижченаведеного списку. </p>
+        <p>Оберіть на вашу думку <strong>5 найбільш нетипових</strong> упакувань шкарпеток.</p>
         <form id="category3-n-Form" class="image-selection-form" netlify>
           <label for="img-3-1n">
             <input type="checkbox" id="img-3-1n" name="image" value="img-3-1n">
@@ -119,7 +119,7 @@
         submitButton.addEventListener('click', function() {
           const selectedImages = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
           localStorage.setItem('category3-n-Selection', JSON.stringify(selectedImages));
-          window.location.href = 'contact-details.html'; // Перевірте, що шлях вказано правильно
+          window.location.href = 'thank-u.html'; // Перевірте, що шлях вказано правильно
         });
         backButton.addEventListener('click', function() {
           window.history.back(); // Перевірте, що ця дія працює як очікувалося

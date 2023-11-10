@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дякуємо!</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Дякуємо за вашу участь!</h1>
+      </header>
+      <main>
+        <p>Ваші відповіді були успішно відправлені.</p>
+      </main>
+    </div>
+    <form id="hiddenForm" name="survey-results" method="POST" data-netlify="true">
+      <input type="hidden" name="gender">
+      <input type="hidden" name="ageGroup">
+      <input type="hidden" id="category1SelectionData" name="category1">
+      <input type="hidden" id="category1-n-SelectionData" name="category1n">
+      <input type="hidden" id="category2SelectionData" name="category2">
+      <input type="hidden" id="category2-n-SelectionData" name="category2n">
+      <input type="hidden" id="category3SelectionData" name="category3">
+      <input type="hidden" id="category3-n-SelectionData" name="category3n">
+    </form>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const hiddenForm = document.getElementById('hiddenForm');
+          const demographics = JSON.parse(localStorage.getItem('demographics'));
+          const category1Selection = JSON.parse(localStorage.getItem('category1Selection'));
+          const category1nSelection = JSON.parse(localStorage.getItem('category1-n-Selection'));
+          const category2Selection = JSON.parse(localStorage.getItem('category2Selection'));
+          const category2nSelection = JSON.parse(localStorage.getItem('category2-n-Selection'));
+          const category3Selection = JSON.parse(localStorage.getItem('category3Selection'));
+          const category3nSelection = JSON.parse(localStorage.getItem('category3-n-Selection'));
+          hiddenForm['gender'].value = demographics.gender;
+          hiddenForm['ageGroup'].value = demographics.ageGroup;
+          hiddenForm['category1'].value = category1Selection.join(', ');
+          hiddenForm['category1n'].value = category1nSelection.join(', ');
+          hiddenForm['category2'].value = category2Selection.join(', ');
+          hiddenForm['category2n'].value = category2nSelection.join(', ');
+          hiddenForm['category3'].value = category3Selection.join(', ');
+          hiddenForm['category3n'].value = category3nSelection.join(', ');
+          hiddenForm.submit();
+          localStorage.clear();
+      });
+    </script>
+  </body>
+</html>
