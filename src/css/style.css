@@ -11,6 +11,10 @@ body, html {
   background-color: #f7f7f7;
 }
 
+body.special-background {
+  background-color: #0e1e25;
+}
+
 .container {
   max-width: 800px;
   margin: 20px auto;
